@@ -1,0 +1,34 @@
+| Feature                    | **Docker**                                    | **Podman**                                                      |
+| -------------------------- | --------------------------------------------- | --------------------------------------------------------------- |
+| **Daemon**                 | Uses a central daemon (`dockerd`)             | Daemonless, runs as user process                                |
+| **Rootless**               | Rootless mode is available (not default)      | Designed for rootless operation                                 |
+| **Docker CLI Compatible**  | Native CLI                                    | CLI compatible (`alias docker=podman`)                          |
+| **Docker Compose Support** | Native support (`docker compose`)             | Uses external tools like `podman-compose` or `podman play kube` |
+| **Systemd Integration**    | Limited                                       | Native systemd unit generation (`podman generate systemd`)      |
+| **Kubernetes Support**     | Needs separate tools like `kompose` or `kind` | Can generate K8s YAML (`podman generate kube`)                  |
+| **Container Images**       | Uses Docker Hub, OCI-compatible               | Also uses Docker Hub, OCI-compatible                            |
+| **Swarm Support**          | Yes                                           | No swarm support                                                |
+| **Security Model**         | Central daemon requires root access           | Each container runs as the calling user (more secure)           |
+
+
+- Use Podman if you want improved security, systemd integration, or are working on rootless systems or Red Hat-based distros.
+
+## Docker
+-  Pros:
+    Mature and widely adopted
+    Rich ecosystem (Docker Hub, Docker Desktop, Docker Compose)
+    Better tooling for beginners
+- Cons:
+    Docker daemon runs as root (security risk)
+    Slightly heavier due to daemon
+
+## Podman
+- Pros:
+    Daemonless = better security
+    Rootless containers by default
+    Better systemd & Kubernetes integration
+    Drop-in replacement for Docker CLI
+- Cons:
+    Ecosystem and tooling less mature
+    Compose support is not as seamless
+    Smaller community (but growing)
